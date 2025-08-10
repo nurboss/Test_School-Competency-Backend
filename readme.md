@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+=======
+
+
+## 🔗 Live URL
+
+[Tech Tips & Tricks Hub](https://a-5-l2-tech-tips-server.vercel.app/)
+
+
+>>>>>>> bb20e823dffb03d51ce284c4d375729fc9bfbfab
 ## Technologies Used
 
 - Node.js
@@ -10,6 +20,7 @@
 - Bcrypt
 - Nodemailer
 
+<<<<<<< HEAD
 ````
 📦 Install Dependencies
 
@@ -56,3 +67,5 @@ npm run lint
 npm run lint:fix
 
 ```
+=======
+>>>>>>> bb20e823dffb03d51ce284c4d375729fc9bfbfab
