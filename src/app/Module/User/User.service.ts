@@ -26,19 +26,6 @@ const updateProfileDB = async (
     throw new AppError(httpStatus.BAD_REQUEST, "This User Already Delete !!");
   }
 
-  if (
-    (body?.role && tokenIdByUser?.role === USER_ROLE.user) ||
-    (body?.status && tokenIdByUser?.role === USER_ROLE.user) ||
-    (body?.isVerified && tokenIdByUser?.role === USER_ROLE.user) ||
-    tokenIdByUser?.status === USER_STATUS?.block ||
-    tokenIdByUser?.isDelete === true
-  ) {
-    throw new AppError(
-      httpStatus.BAD_REQUEST,
-      "Your Can not change Role,Status and isVerified"
-    );
-  }
-
   if (body?.password) {
     throw new AppError(
       httpStatus.BAD_REQUEST,
@@ -69,14 +56,10 @@ const updateProfileDB = async (
 };
 
 const getSingleUserDB = async (tokenUserId: string, paramsUserId: string) => {
-  const user = await UserModel.findById({ _id: tokenUserId }).select(
-    "+password"
-  ).populate({path:"userProfile",select:"_id followers"});
-  if (user?.role === USER_ROLE.user) {
-    if (tokenUserId.toString() !== paramsUserId) {
-      throw new AppError(httpStatus.BAD_REQUEST, "You Can't find This User");
-    }
-  }
+  const user = await UserModel.findById({ _id: tokenUserId })
+    .select("+password")
+    .populate({ path: "userProfile", select: "_id followers" });
+
   if (!user) {
     throw new AppError(httpStatus.NOT_FOUND, "This User Not Found !");
   }
