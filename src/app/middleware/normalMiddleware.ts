@@ -6,7 +6,11 @@ import bodyParser from "body-parser";
 const normalMiddleware = (app: Application) => {
   app.use(
     cors({
-      origin: "*",
+      origin: [
+        "https://test-school-competency.netlify.app",
+        "http://localhost:5173",
+        "http://localhost:5174",
+      ],
       credentials: true,
     })
   );
